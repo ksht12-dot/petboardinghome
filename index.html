@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Private Pet Homestay — a true home away from home</title>
+<meta name="description" content="Family-style pet boarding. No cages, no kennels — your pet stays in our home, sleeps on the sofa, and joins our family life while you're away.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caprasimo&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --mist: #EEF3F1;      /* page background, soft morning light */
+    --white: #FFFFFF;
+    --ink: #1F2B3A;       /* evening navy, text */
+    --ink-soft: #4A5868;
+    --lamp: #F2C14E;      /* warm lamp glow, the one bright accent */
+    --lamp-soft: #FBE7B0;
+    --sofa: #3E6B5A;      /* living-room green */
+    --sofa-soft: #D5E4DC;
+    --blush: #F4C7B8;
+    --line: #CFDAD6;
+
+    --display: "Caprasimo", Georgia, serif;
+    --body: "Atkinson Hyperlegible", system-ui, sans-serif;
+    --hand: "Caveat", cursive;
+
+    --radius: 18px;
+    --max: 1120px;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--mist);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 18px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  img, svg { display: block; max-width: 100%; }
+  a { color: var(--sofa); }
+  a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible,
+  textarea:focus-visible, summary:focus-visible {
+    outline: 3px solid var(--lamp);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+
+  h1, h2, h3 { font-family: var(--display); font-weight: 400; line-height: 1.1; margin: 0; letter-spacing: -0.01em; }
+  h2 { font-size: clamp(2rem, 4.2vw, 3rem); }
+  h3 { font-size: 1.35rem; }
+  .eyebrow {
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--sofa);
+    margin-bottom: 14px;
+  }
+  .lede { font-size: 1.15rem; color: var(--ink-soft); max-width: 60ch; }
+  .note { font-family: var(--hand); font-size: 1.5rem; color: var(--sofa); line-height: 1.2; }
+
+  /* ---------- buttons ---------- */
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    font: 700 1rem/1 var(--body);
+    padding: 16px 26px;
+    border-radius: 999px;
+    border: 2px solid var(--ink);
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform .15s ease, box-shadow .15s ease;
+  }
+  .btn-primary { background: var(--lamp); color: var(--ink); box-shadow: 0 4px 0 var(--ink); }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 0 var(--ink); }
+  .btn-primary:active { transform: translateY(2px); box-shadow: 0 2px 0 var(--ink); }
+  .btn-quiet { background: transparent; color: var(--ink); }
+  .btn-quiet:hover { background: var(--white); }
+
+  /* ---------- nav ---------- */
+  header.site {
+    position: sticky; top: 0; z-index: 20;
+    background: color-mix(in srgb, var(--mist) 92%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav { display: flex; align-items: center; justify-content: space-between; height: 72px; gap: 16px; }
+  .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); }
+  .brand-mark { width: 34px; height: 34px; }
+  .brand-name { font-family: var(--display); font-size: 1.3rem; line-height: 1; }
+  .nav-links { display: flex; gap: 26px; list-style: none; margin: 0; padding: 0; }
+  .nav-links a { color: var(--ink); text-decoration: none; font-weight: 700; font-size: 0.95rem; }
+  .nav-links a:hover { color: var(--sofa); }
+  .nav .btn { padding: 11px 20px; font-size: 0.95rem; box-shadow: 0 3px 0 var(--ink); }
+
+  /* ---------- hero ---------- */
+  .hero { padding: 64px 0 40px; }
+  .hero-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 48px; align-items: center; }
+  .hero h1 { font-size: clamp(2.6rem, 6.4vw, 5rem); margin-bottom: 22px; }
+  .hero h1 em { font-style: normal; color: var(--sofa); }
+  .hero .lede { margin: 0 0 30px; }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 34px; }
+  .promises { display: flex; flex-wrap: wrap; gap: 10px; list-style: none; padding: 0; margin: 0; }
+  .promises li {
+    background: var(--white); border: 1px solid var(--line);
+    border-radius: 999px; padding: 8px 16px; font-weight: 700; font-size: 0.92rem;
+  }
+  .promises li::before { content: "✕ "; color: #C2553F; }
+  .promises li.yes::before { content: "✓ "; color: var(--sofa); }
+
+  .house { position: relative; }
+  .house svg { width: 100%; height: auto; }
+  .house .caption {
+    margin: 4px 8% 0 0; text-align: right;
+    transform: rotate(-3deg);
+  }
+  .glow { animation: glow 5s ease-in-out infinite; }
+  @keyframes glow { 0%,100% { opacity: .55; } 50% { opacity: .85; } }
+  .smoke circle { animation: rise 6s linear infinite; opacity: 0; }
+  .smoke circle:nth-child(2) { animation-delay: 2s; }
+  .smoke circle:nth-child(3) { animation-delay: 4s; }
+  @keyframes rise {
+    0% { transform: translate(0, 0) scale(.6); opacity: 0; }
+    20% { opacity: .5; }
+    100% { transform: translate(14px, -60px) scale(1.4); opacity: 0; }
+  }
+  .breath { transform-origin: 50% 100%; transform-box: fill-box; animation: breath 3.4s ease-in-out infinite; }
+  @keyframes breath { 0%,100% { transform: scaleY(1); } 50% { transform: scaleY(1.05); } }
+
+  /* ---------- sections ---------- */
+  section { padding: 88px 0; scroll-margin-top: 72px; }
+  .section-head { margin-bottom: 44px; }
+  .section-head .lede { margin-top: 14px; }
+  .band-white { background: var(--white); }
+  .band-ink { background: var(--ink); color: var(--mist); }
+  .band-ink .eyebrow { color: var(--lamp); }
+  .band-ink .lede { color: #C4CFD9; }
+
+  /* kennel vs home comparison */
+  .compare { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 1rem; }
+  .compare th, .compare td { padding: 18px 20px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); }
+  .compare thead th { font-size: 0.8rem; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-soft); border-bottom: 2px solid var(--ink); }
+  .compare thead th.us { color: var(--sofa); }
+  .compare tbody th { font-weight: 700; width: 22%; }
+  .compare td.them { color: var(--ink-soft); width: 34%; }
+  .compare td.us { background: var(--sofa-soft); font-weight: 700; }
+  .compare tr:last-child td.us { border-radius: 0 0 var(--radius) var(--radius); }
+  .compare thead th.us { background: var(--sofa-soft); border-radius: var(--radius) var(--radius) 0 0; }
+
+  /* a day here — timeline */
+  .day { position: relative; list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(6, 1fr); gap: 0; }
+  .day::before {
+    content: ""; position: absolute; left: 0; right: 0; top: 27px; height: 4px;
+    background: linear-gradient(90deg, var(--lamp-soft), var(--lamp) 45%, #7C8BB5 80%, #3B4A73);
+    border-radius: 4px;
+  }
+  .day li { position: relative; padding: 0 14px 0 0; }
+  .day .dot {
+    width: 58px; height: 58px; border-radius: 50%;
+    background: var(--ink); border: 4px solid var(--ink);
+    display: grid; place-items: center; font-size: 1.5rem; position: relative; z-index: 1;
+    margin-bottom: 18px;
+  }
+  .day .dot span { width: 100%; height: 100%; border-radius: 50%; background: var(--mist); display: grid; place-items: center; }
+  .day time { display: block; font-family: var(--hand); font-size: 1.7rem; color: var(--lamp); line-height: 1; margin-bottom: 6px; }
+  .day h3 { font-size: 1.15rem; margin-bottom: 6px; color: var(--white); }
+  .day p { margin: 0; font-size: 0.95rem; color: #C4CFD9; }
+
+  /* steps */
+  .steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; counter-reset: step; }
+  .steps li {
+    counter-increment: step;
+    background: var(--white); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 24px 20px;
+  }
+  .steps li::before {
+    content: counter(step);
+    display: grid; place-items: center;
+    width: 36px; height: 36px; border-radius: 50%;
+    background: var(--lamp); border: 2px solid var(--ink);
+    font-weight: 700; margin-bottom: 14px;
+  }
+  .steps h3 { font-size: 1.15rem; margin-bottom: 8px; }
+  .steps p { margin: 0; font-size: 0.95rem; color: var(--ink-soft); }
+
+  /* pricing */
+  .prices { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .price {
+    background: var(--mist); border-radius: var(--radius); padding: 30px 28px;
+    border: 2px solid transparent;
+  }
+  .price.featured { background: var(--lamp-soft); border-color: var(--ink); }
+  .price h3 { margin-bottom: 6px; }
+  .price .amount { font-family: var(--display); font-size: 3rem; line-height: 1; margin: 16px 0 4px; }
+  .price .per { color: var(--ink-soft); font-size: 0.95rem; }
+  .price ul { padding: 0; margin: 20px 0 0; list-style: none; font-size: 0.97rem; }
+  .price li { padding: 7px 0; border-top: 1px dashed var(--line); }
+  .price li:first-child { border-top: 0; }
+  .price-foot { margin-top: 22px; color: var(--ink-soft); font-size: 0.95rem; }
+
+  /* packing + faq */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
+  .pack {
+    background: var(--white); border-radius: var(--radius); padding: 32px;
+    border: 1px solid var(--line);
+    transform: rotate(-1deg);
+    box-shadow: 0 10px 30px rgba(31,43,58,.08);
+  }
+  .pack h3 { font-family: var(--hand); font-size: 2.2rem; font-weight: 700; margin-bottom: 10px; }
+  .pack ul { list-style: none; padding: 0; margin: 0; }
+  .pack li { display: flex; gap: 12px; padding: 9px 0; border-bottom: 1px solid var(--mist); }
+  .pack li::before { content: ""; flex: none; width: 20px; height: 20px; margin-top: 4px; border: 2px solid var(--sofa); border-radius: 5px; }
+
+  details { border-bottom: 1px solid var(--line); }
+  details:first-of-type { border-top: 1px solid var(--line); }
+  summary {
+    list-style: none; cursor: pointer; padding: 20px 40px 20px 0; position: relative;
+    font-weight: 700; font-size: 1.05rem;
+  }
+  summary::-webkit-details-marker { display: none; }
+  summary::after {
+    content: "+"; position: absolute; right: 6px; top: 14px;
+    font-family: var(--display); font-size: 1.7rem; color: var(--sofa); transition: transform .2s;
+  }
+  details[open] summary::after { transform: rotate(45deg); }
+  details p { margin: 0 0 20px; color: var(--ink-soft); }
+
+  /* booking form */
+  .book-grid { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 56px; align-items: start; }
+  .book-aside p { color: #C4CFD9; }
+  form.request {
+    background: var(--white); color: var(--ink);
+    border-radius: 24px; padding: 34px;
+  }
+  fieldset { border: 0; padding: 0; margin: 0 0 22px; }
+  legend { font-family: var(--display); font-size: 1.25rem; margin-bottom: 14px; padding: 0; }
+  .fields { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .fields .full { grid-column: 1 / -1; }
+  label { display: block; font-weight: 700; font-size: 0.92rem; margin-bottom: 6px; }
+  label .opt { font-weight: 400; color: var(--ink-soft); }
+  input, select, textarea {
+    width: 100%; font: 400 1rem/1.4 var(--body); color: var(--ink);
+    padding: 13px 14px; border: 2px solid var(--line); border-radius: 12px; background: var(--white);
+  }
+  input:hover, select:hover, textarea:hover { border-color: #AFC0BA; }
+  input:focus, select:focus, textarea:focus { border-color: var(--sofa); outline: none; }
+  textarea { min-height: 110px; resize: vertical; }
+  .form-foot { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; }
+  .form-foot small { color: var(--ink-soft); }
+  .error { color: #B23A25; font-size: 0.9rem; margin-top: 6px; display: none; }
+  .invalid .error { display: block; }
+  .invalid input { border-color: #B23A25; }
+  .send-error { color: #B23A25; font-weight: 700; margin: 14px 0 0; }
+  .send-error:empty { display: none; }
+  .btn:disabled { opacity: .6; cursor: wait; }
+  .sent { display: none; text-align: center; padding: 30px 10px; }
+  .sent h3 { font-size: 1.8rem; margin-bottom: 10px; }
+  .sent p { color: var(--ink-soft); }
+
+  footer.site { padding: 36px 0; font-size: 0.92rem; color: var(--ink-soft); }
+  .foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
+
+  /* ---------- responsive ---------- */
+  @media (max-width: 960px) {
+    .nav-links { display: none; }
+    .hero-grid, .two-col, .book-grid { grid-template-columns: 1fr; }
+    .house { max-width: 460px; margin: 0 auto; }
+    .steps { grid-template-columns: 1fr 1fr; }
+    .prices { grid-template-columns: 1fr; }
+    .day { grid-template-columns: 1fr; gap: 26px; }
+    .day::before { left: 27px; right: auto; top: 0; bottom: 0; width: 4px; height: auto;
+      background: linear-gradient(180deg, var(--lamp-soft), var(--lamp) 45%, #7C8BB5 80%, #3B4A73); }
+    .day li { display: grid; grid-template-columns: 58px 1fr; column-gap: 20px; padding: 0; }
+    .day .dot { grid-row: span 3; margin: 0; }
+  }
+  @media (max-width: 620px) {
+    body { font-size: 17px; }
+    .wrap { padding: 0 16px; }
+    section { padding: 64px 0; }
+    .hero { padding-top: 40px; }
+    .steps { grid-template-columns: 1fr; }
+    .fields { grid-template-columns: 1fr; }
+    form.request { padding: 24px 18px; }
+    .nav .btn { padding: 10px 16px; }
+    .brand-name { font-size: 1.1rem; }
+    .compare thead { display: none; }
+    .compare, .compare tbody, .compare tr, .compare th, .compare td { display: block; width: 100% !important; }
+    .compare tr { margin-bottom: 16px; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: var(--white); }
+    .compare tbody th { border-bottom: 0; padding-bottom: 4px; }
+    .compare td { border-bottom: 0; padding-top: 8px; padding-bottom: 12px; }
+    .compare td.them::before { content: "Kennel: "; font-weight: 700; }
+    .compare td.us::before { content: "With us: "; }
+    .compare tr:last-child td.us { border-radius: 0; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap nav">
+    <a class="brand" href="#top" aria-label="Private Pet Homestay, home">
+      <svg class="brand-mark" viewBox="0 0 40 40" aria-hidden="true">
+        <path d="M5 19 20 6l15 13v15H5z" fill="#3E6B5A" stroke="#1F2B3A" stroke-width="2.5" stroke-linejoin="round"/>
+        <rect x="15" y="20" width="10" height="9" rx="1.5" fill="#F2C14E" stroke="#1F2B3A" stroke-width="2"/>
+      </svg>
+      <span class="brand-name">Pet Homestay</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#difference">Why a home</a></li>
+      <li><a href="#day">A day here</a></li>
+      <li><a href="#how">How it works</a></li>
+      <li><a href="#prices">Prices</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <a class="btn btn-primary" href="#book">Request a stay</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">Private pet homestay</span>
+        <h1>A true home <em>away from home.</em></h1>
+        <p class="lede">Your pet doesn’t stay in a kennel. They become part of our family while you’re away — sleeping, relaxing, playing, and enjoying normal home life.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#book">Request a stay →</a>
+          <a class="btn btn-quiet" href="#day">See a day with us</a>
+        </div>
+        <ul class="promises" aria-label="Our promises">
+          <li>No cages</li>
+          <li>No kennels</li>
+          <li class="yes">A loving home</li>
+          <li class="yes">Personal care</li>
+        </ul>
+      </div>
+
+      <div class="house">
+        <svg viewBox="0 0 420 380" role="img" aria-label="Illustration of a house at dusk with a lit window, and a dog asleep on the sofa inside">
+          <!-- ground -->
+          <ellipse cx="210" cy="352" rx="200" ry="16" fill="#D5E4DC"/>
+          <!-- chimney + smoke -->
+          <rect x="278" y="58" width="34" height="70" fill="#F4C7B8" stroke="#1F2B3A" stroke-width="4"/>
+          <g class="smoke" fill="#FFFFFF">
+            <circle cx="295" cy="46" r="10"/>
+            <circle cx="295" cy="46" r="10"/>
+            <circle cx="295" cy="46" r="10"/>
+          </g>
+          <!-- roof -->
+          <path d="M40 170 210 40l170 130z" fill="#3E6B5A" stroke="#1F2B3A" stroke-width="5" stroke-linejoin="round"/>
+          <!-- walls -->
+          <rect x="70" y="165" width="280" height="185" fill="#FFFFFF" stroke="#1F2B3A" stroke-width="5"/>
+          <!-- lamp glow -->
+          <clipPath id="walls"><rect x="72" y="167" width="276" height="181"/></clipPath>
+          <circle class="glow" clip-path="url(#walls)" cx="180" cy="255" r="110" fill="#F2C14E" opacity=".6"/>
+          <!-- big window -->
+          <rect x="96" y="195" width="170" height="120" rx="6" fill="#FBE7B0" stroke="#1F2B3A" stroke-width="5"/>
+          <!-- lamp -->
+          <line x1="236" y1="215" x2="236" y2="290" stroke="#1F2B3A" stroke-width="3"/>
+          <path d="M222 214h28l-6-16h-16z" fill="#F2C14E" stroke="#1F2B3A" stroke-width="3" stroke-linejoin="round"/>
+          <!-- sofa -->
+          <rect x="108" y="258" width="112" height="38" rx="10" fill="#3E6B5A" stroke="#1F2B3A" stroke-width="3.5"/>
+          <rect x="100" y="250" width="18" height="46" rx="8" fill="#3E6B5A" stroke="#1F2B3A" stroke-width="3.5"/>
+          <rect x="210" y="250" width="18" height="46" rx="8" fill="#3E6B5A" stroke="#1F2B3A" stroke-width="3.5"/>
+          <!-- sleeping dog -->
+          <g class="breath">
+            <ellipse cx="160" cy="253" rx="36" ry="15" fill="#E8A36B" stroke="#1F2B3A" stroke-width="3.5"/>
+            <circle cx="192" cy="251" r="12" fill="#E8A36B" stroke="#1F2B3A" stroke-width="3.5"/>
+            <path d="M186 243c-6 2-9 9-6 15" fill="none" stroke="#1F2B3A" stroke-width="3" stroke-linecap="round"/>
+            <path d="M193 253q3 2 6 0" fill="none" stroke="#1F2B3A" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M125 256q-10 -2 -8 -10" fill="none" stroke="#1F2B3A" stroke-width="3.5" stroke-linecap="round"/>
+          </g>
+          <text x="198" y="228" font-family="Caveat, cursive" font-size="22" fill="#1F2B3A">z z</text>
+          <!-- window frame cross -->
+          <line x1="181" y1="195" x2="181" y2="212" stroke="#1F2B3A" stroke-width="4"/>
+          <!-- door -->
+          <rect x="288" y="232" width="44" height="118" rx="22" fill="#F4C7B8" stroke="#1F2B3A" stroke-width="5"/>
+          <circle cx="322" cy="292" r="3.5" fill="#1F2B3A"/>
+          <!-- little bowl by the door -->
+          <path d="M252 340h26l-4 10h-18z" fill="#F2C14E" stroke="#1F2B3A" stroke-width="3" stroke-linejoin="round"/>
+        </svg>
+        <p class="note caption">Biscuit, day 3 — asleep by 8</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIFFERENCE -->
+  <section id="difference" class="band-white">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Why a home, not a kennel</span>
+        <h2>The same care you’d give them.</h2>
+        <p class="lede">We host only a few pets at a time, so every one gets real attention, a real routine, and a real bed.</p>
+      </div>
+      <table class="compare">
+        <thead>
+          <tr><th scope="col"></th><th scope="col">Typical kennel</th><th scope="col" class="us">At our homestay</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">Where they sleep</th><td class="them">A run or crate, often next to barking dogs</td><td class="us">On their own bed in our home — sofa cuddles welcome</td></tr>
+          <tr><th scope="row">Company</th><td class="them">Staff on shifts, many animals per person</td><td class="us">The same family, all day, every day</td></tr>
+          <tr><th scope="row">Daily routine</th><td class="them">Set kennel schedule for everyone</td><td class="us">Your pet’s own feeding, walk and bedtime routine</td></tr>
+          <tr><th scope="row">Updates</th><td class="them">Call and ask</td><td class="us">Photos and a short note every day</td></tr>
+          <tr><th scope="row">Stress</th><td class="them">Noise, strangers, unfamiliar smells</td><td class="us">Quiet home life, calm and familiar</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- A DAY HERE -->
+  <section id="day" class="band-ink">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">A day with us</span>
+        <h2 style="color:#fff">Normal family life. That’s the point.</h2>
+        <p class="lede">Every pet gets their own routine from home. Here’s what a typical day looks like.</p>
+      </div>
+      <ol class="day">
+        <li><div class="dot"><span aria-hidden="true">☀️</span></div><time>7 am</time><h3>Morning walk</h3><p>A slow sniff around the neighborhood before breakfast.</p></li>
+        <li><div class="dot"><span aria-hidden="true">🥣</span></div><time>8 am</time><h3>Breakfast</h3><p>Their own food, their usual amount, any medicine given.</p></li>
+        <li><div class="dot"><span aria-hidden="true">🧸</span></div><time>11 am</time><h3>Play time</h3><p>Toys, fetch, and lazy sunbathing.</p></li>
+        <li><div class="dot"><span aria-hidden="true">📷</span></div><time>2 pm</time><h3>Nap & your update</h3><p>A quiet afternoon, and photos sent to you.</p></li>
+        <li><div class="dot"><span aria-hidden="true">🐾</span></div><time>6 pm</time><h3>Evening walk & dinner</h3><p>A longer walk, then dinner with the family around.</p></li>
+        <li><div class="dot"><span aria-hidden="true">🌙</span></div><time>9:30 pm</time><h3>Sofa, then bed</h3><p>Movie night on the sofa, then sleep indoors with us.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section id="how">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">How booking works</span>
+        <h2>Five simple steps.</h2>
+      </div>
+      <ol class="steps">
+        <li><h3>Send a request</h3><p>Tell us your dates and about your pet using the form below.</p></li>
+        <li><h3>Free meet & greet</h3><p>Visit our home with your pet so everyone can say hello.</p></li>
+        <li><h3>Drop off</h3><p>Bring their food, bed and a favorite toy. We’ll go over their routine.</p></li>
+        <li><h3>Daily updates</h3><p>You get photos and a note every day while you’re away.</p></li>
+        <li><h3>Pick up</h3><p>Collect a happy, relaxed pet — and hear all about their stay.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- PRICES -->
+  <section id="prices" class="band-white">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Prices</span>
+        <h2>Clear prices, everything included.</h2>
+        <p class="lede">Walks, play, cuddles, medicine and daily photo updates are always included.</p>
+      </div>
+      <div class="prices">
+        <div class="price">
+          <h3>Cats & small pets</h3>
+          <p class="amount">$35</p>
+          <p class="per">per night</p>
+          <ul>
+            <li>Loving family</li>
+            <li>Their own litter box from home, kept clean daily</li>
+            <li>Feeding to your routine</li>
+            <li>Daily photo update</li>
+          </ul>
+        </div>
+        <div class="price featured">
+          <h3>Dogs</h3>
+          <p class="amount">$55</p>
+          <p class="per">per night</p>
+          <ul>
+            <li>Two walks a day, plus potty breaks as needed</li>
+            <li>Sleeps indoors with the family</li>
+            <li>Daily photo update</li>
+          </ul>
+        </div>
+        <div class="price">
+          <h3>Day stay</h3>
+          <p class="amount">$30</p>
+          <p class="per">per day, 8am – 6pm</p>
+          <ul>
+            <li>Great for a first visit</li>
+            <li>Walk, play and lunch</li>
+            <li>Photo update</li>
+          </ul>
+        </div>
+      </div>
+      <p class="price-foot">Second pet from the same family: 25% off. Holiday dates (Christmas, New Year) book up early.</p>
+    </div>
+  </section>
+
+  <!-- PACKING + FAQ -->
+  <section id="faq">
+    <div class="wrap two-col">
+      <div>
+        <div class="section-head">
+          <span class="eyebrow">Before you arrive</span>
+          <h2>What to bring.</h2>
+        </div>
+        <div class="pack">
+          <h3>Packing list</h3>
+          <ul>
+            <li>Their usual food (enough for the whole stay)</li>
+            <li>Bed or blanket that smells like home</li>
+            <li>A favorite toy</li>
+            <li>Their own litter box (for cats)</li>
+            <li>Leash, collar and ID tag</li>
+            <li>Any medicine, with written instructions</li>
+            <li>Vaccination record</li>
+            <li>Your vet’s name and phone number</li>
+          </ul>
+        </div>
+      </div>
+
+      <div>
+        <div class="section-head">
+          <span class="eyebrow">Questions</span>
+          <h2>Good to know.</h2>
+        </div>
+        <details>
+          <summary>How many pets do you look after at once?</summary>
+          <p>Only a few, so each pet gets proper attention. We never overbook, which is why dates can fill up quickly.</p>
+        </details>
+        <details>
+          <summary>Does my pet need to be vaccinated?</summary>
+          <p>Yes. Dogs and cats need up-to-date core vaccines. Please bring the record to the meet & greet.</p>
+        </details>
+        <details>
+          <summary>Can you give medicine?</summary>
+          <p>Yes — tablets, drops and most routine medicine. Write down the dose and times and we’ll follow them exactly.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOOK -->
+  <section id="book" class="band-ink">
+    <div class="wrap book-grid">
+      <div class="book-aside">
+        <span class="eyebrow">Request a stay</span>
+        <h2 style="color:#fff">Tell us about your pet.</h2>
+        <p>Send your dates and a few details. We’ll reply within 24 hours to confirm availability and arrange a free meet & greet.</p>
+        <p class="note" style="color:var(--lamp)">No payment needed to ask.</p>
+      </div>
+
+      <form class="request" id="request-form" action="https://formspree.io/f/mzezzyql" method="POST" novalidate>
+        <input type="hidden" name="_subject" id="fs-subject" value="New stay request">
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
+        <div id="form-body">
+          <fieldset>
+            <legend>Your pet</legend>
+            <div class="fields">
+              <div><label for="pet-name">Pet’s name</label><input id="pet-name" name="Pet name" required autocomplete="off"><p class="error">Please add your pet’s name.</p></div>
+              <div><label for="pet-type">Type of pet</label>
+                <select id="pet-type" name="Pet type">
+                  <option>Dog</option><option>Cat</option><option>Rabbit / small pet</option><option>Other</option>
+                </select>
+              </div>
+              <div class="full"><label for="pet-about">Breed, age and anything we should know <span class="opt">(optional)</span></label>
+                <textarea id="pet-about" name="About the pet" placeholder="e.g. 4-year-old Labrador, loves fetch, scared of thunder, eats twice a day"></textarea></div>
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend>Dates</legend>
+            <div class="fields">
+              <div><label for="date-in">Drop-off</label><input id="date-in" name="Drop-off" type="date" required><p class="error">Choose a drop-off date.</p></div>
+              <div><label for="date-out">Pick-up</label><input id="date-out" name="Pick-up" type="date" required><p class="error">Choose a pick-up date on or after drop-off.</p></div>
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend>You</legend>
+            <div class="fields">
+              <div><label for="owner-name">Your name</label><input id="owner-name" name="Owner name" required autocomplete="name"><p class="error">Please add your name.</p></div>
+              <div><label for="owner-phone">Phone</label><input id="owner-phone" name="Phone" type="tel" required autocomplete="tel"><p class="error">Please add a phone number.</p></div>
+              <div class="full"><label for="owner-email">Email</label><input id="owner-email" name="email" type="email" required autocomplete="email"><p class="error">Please add a valid email address.</p></div>
+            </div>
+          </fieldset>
+          <div class="form-foot">
+            <button class="btn btn-primary" type="submit" id="send-btn">Send request</button>
+            <small>We reply within 24 hours.</small>
+          </div>
+          <p class="send-error" id="send-error" role="alert"></p>
+        </div>
+        <div class="sent" id="form-sent" role="status" aria-live="polite">
+          <h3>Request sent</h3>
+          <p>Thanks! We’ve got your request and will reply within 24 hours to confirm availability and set up a meet &amp; greet.</p>
+        </div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="wrap foot">
+    <span>© <span id="year"></span> Pet Homestay · Family-style pet boarding</span>
+    <span>No cages. No kennels. Just a loving home.</span>
+  </div>
+</footer>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  const form = document.getElementById("request-form");
+  const dateIn = document.getElementById("date-in");
+  const dateOut = document.getElementById("date-out");
+  const today = new Date().toISOString().split("T")[0];
+  dateIn.min = today;
+  dateOut.min = today;
+  dateIn.addEventListener("change", () => { dateOut.min = dateIn.value || today; });
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    let firstBad = null;
+    form.querySelectorAll("input[required]").forEach((input) => {
+      let ok = input.checkValidity() && input.value.trim() !== "";
+      if (input === dateOut && ok && dateIn.value && dateOut.value < dateIn.value) ok = false;
+      input.parentElement.classList.toggle("invalid", !ok);
+      if (!ok && !firstBad) firstBad = input;
+    });
+    if (firstBad) { firstBad.focus(); return; }
+
+    const pet = document.getElementById("pet-name").value.trim();
+    document.getElementById("fs-subject").value = `Stay request for ${pet}: ${dateIn.value} to ${dateOut.value}`;
+
+    const btn = document.getElementById("send-btn");
+    const sendError = document.getElementById("send-error");
+    btn.disabled = true;
+    btn.textContent = "Sending…";
+    sendError.textContent = "";
+
+    try {
+      const res = await fetch(form.action, {
+        method: "POST",
+        body: new FormData(form),
+        headers: { Accept: "application/json" }
+      });
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.errors ? data.errors.map((err) => err.message).join(" ") : "");
+      }
+      document.getElementById("form-body").style.display = "none";
+      document.getElementById("form-sent").style.display = "block";
+    } catch (err) {
+      sendError.textContent = "Your request didn’t send. Check your connection and press Send request again." +
+        (err.message ? " (" + err.message + ")" : "");
+      btn.disabled = false;
+      btn.textContent = "Send request";
+    }
+  });
+
+  form.addEventListener("input", (e) => {
+    if (e.target.parentElement.classList.contains("invalid") && e.target.checkValidity()) {
+      e.target.parentElement.classList.remove("invalid");
+    }
+  });
+</script>
+</body>
+</html>
