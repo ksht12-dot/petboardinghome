@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Request a Stay | Pet Boarding near Lake of the Isles, Minneapolis</title>
+<meta name="description" content="Request pet boarding or drop-in visits near Lake of the Isles, Minneapolis 55408. Free street parking, pickup available. We reply within 24 hours.">
+<link rel="canonical" href="https://petboardinghome.org/contact.html">
+<meta property="og:title" content="Request a Stay | Pet Boarding near Lake of the Isles, Minneapolis">
+<meta property="og:description" content="Request pet boarding or drop-in visits near Lake of the Isles, Minneapolis 55408. Free street parking, pickup available. We reply within 24 hours.">
+<meta property="og:url" content="https://petboardinghome.org/contact.html">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caprasimo&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap nav">
+    <a class="brand" href="index.html" aria-label="Pet Homestay, home">
+      <svg class="brand-mark" viewBox="0 0 40 40" aria-hidden="true">
+        <path d="M5 19 20 6l15 13v15H5z" fill="#3E6B5A" stroke="#1F2B3A" stroke-width="2.5" stroke-linejoin="round"/>
+        <rect x="15" y="20" width="10" height="9" rx="1.5" fill="#F2C14E" stroke="#1F2B3A" stroke-width="2"/>
+      </svg>
+      <span class="brand-name">Pet Homestay</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html#location">Location</a></li>
+      <li><a href="index.html#day">A day here</a></li>
+      <li><a href="index.html#prices">Prices</a></li>
+      <li><a href="index.html#winter">Winter</a></li>
+      <li><a href="testimonials.html">Reviews</a></li>
+      <li><a href="index.html#faq">FAQ</a></li>
+    </ul>
+    <a class="btn btn-primary" href="contact.html">Request a stay</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <section id="book" class="band-ink">
+    <div class="wrap book-grid">
+      <div class="book-aside">
+        <span class="eyebrow">Request a stay</span>
+        <h1 style="color:#fff; font-size:clamp(2rem,4.2vw,3rem)">Tell us about your pet.</h1>
+        <p>Send your dates and a few details. We’ll reply within 24 hours to confirm availability and arrange a free meet &amp; greet.</p>
+        <p class="note" style="color:var(--lamp)">No payment needed to ask.</p>
+        <h3>Where</h3>
+        <p>Near Lake of the Isles, Minneapolis 55408. We share our exact address once your meet &amp; greet is booked.</p>
+        <h3>Parking</h3>
+        <p>Free street parking right out front. No permit needed.</p>
+        <h3>Pickup &amp; drop-off</h3>
+        <p>Available for an extra fee — mention it in your request.</p>
+      </div>
+
+      <form class="request" id="request-form" action="https://formspree.io/f/mzezzyql" method="POST" novalidate>
+        <input type="hidden" name="_subject" id="fs-subject" value="New stay request">
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
+        <div id="form-body">
+          <fieldset>
+            <legend>Your pet</legend>
+            <div class="fields">
+              <div><label for="pet-name">Pet’s name</label><input id="pet-name" name="Pet name" required autocomplete="off"><p class="error">Please add your pet’s name.</p></div>
+              <div><label for="pet-type">Type of pet</label>
+                <select id="pet-type" name="Pet type">
+                  <option>Dog</option><option>Cat</option><option>Rabbit / small pet</option><option>Other</option>
+                </select>
+              </div>
+              <div class="full"><label for="pet-about">Breed, age and anything we should know <span class="opt">(optional)</span></label>
+                <textarea id="pet-about" name="About the pet" placeholder="e.g. 4-year-old Labrador, loves fetch, scared of thunder, eats twice a day"></textarea></div>
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend>Dates</legend>
+            <div class="fields">
+              <div><label for="date-in">Drop-off</label><input id="date-in" name="Drop-off" type="date" required><p class="error">Choose a drop-off date.</p></div>
+              <div><label for="date-out">Pick-up</label><input id="date-out" name="Pick-up" type="date" required><p class="error">Choose a pick-up date on or after drop-off.</p></div>
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend>You</legend>
+            <div class="fields">
+              <div><label for="owner-name">Your name</label><input id="owner-name" name="Owner name" required autocomplete="name"><p class="error">Please add your name.</p></div>
+              <div><label for="owner-phone">Phone</label><input id="owner-phone" name="Phone" type="tel" required autocomplete="tel"><p class="error">Please add a phone number.</p></div>
+              <div class="full"><label for="owner-email">Email</label><input id="owner-email" name="email" type="email" required autocomplete="email"><p class="error">Please add a valid email address.</p></div>
+            </div>
+          </fieldset>
+          <div class="form-foot">
+            <button class="btn btn-primary" type="submit" id="send-btn">Send request</button>
+            <small>We reply within 24 hours.</small>
+          </div>
+          <p class="send-error" id="send-error" role="alert"></p>
+        </div>
+        <div class="sent" id="form-sent" role="status" aria-live="polite">
+          <h3>Request sent</h3>
+          <p>Thanks! We’ve got your request and will reply within 24 hours to confirm availability and set up a meet &amp; greet.</p>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <section id="map">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Find us</span>
+        <h2>Steps from Lake of the Isles.</h2>
+      </div>
+      <div class="map-grid">
+        <div>
+          <iframe class="map" title="Map of Lake of the Isles, Minneapolis" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+            src="https://www.google.com/maps?q=Lake+of+the+Isles,+Minneapolis,+MN+55408&amp;z=14&amp;output=embed"></iframe>
+          <p class="map-note">The map shows our neighborhood. For privacy, we send the exact address after you book a meet &amp; greet.</p>
+        </div>
+        <div>
+          <div class="drive" style="grid-template-columns:1fr; margin:0">
+            <div><strong>12 min</strong><span>to Downtown, Edina and St. Louis Park</span></div>
+            <div><strong>18 min</strong><span>to MSP Airport — about 10 miles to Terminal 1 via I-35W or the Crosstown</span></div>
+          </div>
+          <div class="landmarks">
+            <h3>Nearby landmarks</h3>
+            <ul class="chips">
+              <li>Hennepin &amp; Lake</li><li>Midtown Greenway</li><li>The Walker</li>
+              <li>Bde Maka Ska</li><li>Cedar Lake</li><li>Kenilworth Trail</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site">
+  <div class="wrap foot">
+    <span>© <span id="year"></span> Pet Homestay · Family-style pet boarding in Minneapolis, MN 55408</span>
+    <span>Near Lake of the Isles · <a href="testimonials.html">Reviews</a> · <a href="contact.html">Request a stay</a></span>
+  </div>
+</footer>
+
+<script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+<script src="form.js"></script>
+</body>
+</html>
