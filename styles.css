@@ -181,7 +181,7 @@ section { padding: 88px 0; scroll-margin-top: 72px; }
 .steps p { margin: 0; font-size: 0.95rem; color: var(--ink-soft); }
 
 /* pricing */
-.prices { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+.prices { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
 .price {
   background: var(--mist); border-radius: var(--radius); padding: 30px 28px;
   border: 2px solid transparent;
@@ -290,6 +290,16 @@ footer.site { padding: 36px 0; font-size: 0.92rem; color: var(--ink-soft); }
 .practical h3 { font-size: 1.2rem; margin-bottom: 6px; }
 .practical p { margin: 0; }
 
+/* ---------- gallery ---------- */
+.gallery { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; }
+.gallery a { display: block; border-radius: 14px; overflow: hidden; background: var(--sofa-soft); }
+.gallery img { width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; transition: transform .3s ease; }
+.gallery a:hover img { transform: scale(1.04); }
+.lightbox { border: 0; padding: 0; background: transparent; max-width: min(92vw, 1100px); max-height: 92vh; }
+.lightbox::backdrop { background: rgba(31, 43, 58, .88); }
+.lightbox img { max-width: min(92vw, 1100px); max-height: 88vh; width: auto; height: auto; border-radius: 14px; }
+.lb-close { position: fixed; top: 16px; right: 20px; width: 48px; height: 48px; border-radius: 50%; border: 2px solid var(--ink); background: var(--lamp); font: 700 1.6rem/1 var(--body); cursor: pointer; }
+
 /* ---------- cta + contact ---------- */
 .cta { text-align: center; }
 .cta h2 { color: var(--white); margin-bottom: 14px; }
@@ -312,8 +322,9 @@ footer.site { padding: 36px 0; font-size: 0.92rem; color: var(--ink-soft); }
   .hero-grid, .two-col, .book-grid { grid-template-columns: 1fr; }
   .house { max-width: 460px; margin: 0 auto; }
   .steps { grid-template-columns: 1fr 1fr; }
-  .prices { grid-template-columns: 1fr 1fr; }
+  .prices { grid-template-columns: 1fr; }
   .rings, .drive { grid-template-columns: 1fr; }
+  .gallery { grid-template-columns: repeat(3, 1fr); }
   .map-grid { grid-template-columns: 1fr; }
   .day { grid-template-columns: 1fr; gap: 26px; }
   .day::before { left: 27px; right: auto; top: 0; bottom: 0; width: 4px; height: auto;

@@ -130,13 +130,6 @@
     },
     {
       "@type": "Offer",
-      "name": "Day stay",
-      "price": "30",
-      "priceCurrency": "USD",
-      "description": "Per day, 8 am to 6 pm"
-    },
-    {
-      "@type": "Offer",
       "name": "Drop-in visit",
       "price": "35",
       "priceCurrency": "USD",
@@ -160,6 +153,7 @@
     <ul class="nav-links">
       <li><a href="index.html#location">Location</a></li>
       <li><a href="index.html#day">A day here</a></li>
+      <li><a href="index.html#gallery">Gallery</a></li>
       <li><a href="index.html#prices">Prices</a></li>
       <li><a href="index.html#faq">FAQ</a></li>
     </ul>
@@ -338,6 +332,41 @@
     </div>
   </section>
 
+  <!-- GALLERY -->
+  <section id="gallery">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Photo gallery</span>
+        <h2>Some of our recent guests.</h2>
+        <p class="lede">Real pets, real stays: naps on the sofa, cuddles in bed and walks by the lake.</p>
+      </div>
+      <ul class="gallery">
+        <li><a href="images/gallery/pet-01.jpg" data-full><img src="images/gallery/pet-01-sm.jpg" alt="Two doodles on a lake walk" width="600" height="600" loading="lazy"></a></li>
+        <li><a href="images/gallery/pet-02.jpg" data-full><img src="images/gallery/pet-02-sm.jpg" alt="Pug relaxing on the sofa" width="600" height="600" loading="lazy"></a></li>
+        <li><a href="images/gallery/pet-03.jpg" data-full><img src="images/gallery/pet-03-sm.jpg" alt="Orange and white cat curled up asleep" width="600" height="600" loading="lazy"></a></li>
+        <li><a href="images/gallery/pet-04.jpg" data-full><img src="images/gallery/pet-04-sm.jpg" alt="Golden retriever resting on a blanket" width="600" height="600" loading="lazy"></a></li>
+        <li><a href="images/gallery/pet-05.jpg" data-full><img src="images/gallery/pet-05-sm.jpg" alt="Fluffy gray cat lounging on the couch" width="600" height="600" loading="lazy"></a></li>
+        <li><a href="images/gallery/pet-06.jpg" data-full><img src="images/gallery/pet-06-sm.jpg" alt="French bulldog stretched out on the bed" width="600" height="600" loading="lazy"></a></li>
+        <li><a href="images/gallery/pet-07.jpg" data-full><img src="images/gallery/pet-07-sm.jpg" alt="Doodle on a walk by the lake" width="600" height="600" loading="lazy"></a></li>
+        <li><a href="images/gallery/pet-08.jpg" data-full><img src="images/gallery/pet-08-sm.jpg" alt="Persian cat sitting on the rug" width="600" height="600" loading="lazy"></a></li>
+        <li><a href="images/gallery/pet-09.jpg" data-full><img src="images/gallery/pet-09-sm.jpg" alt="Pug napping on a pillow" width="600" height="600" loading="lazy"></a></li>
+        <li><a href="images/gallery/pet-10.jpg" data-full><img src="images/gallery/pet-10-sm.jpg" alt="Two cats peeking out from under the bed" width="600" height="600" loading="lazy"></a></li>
+        <li><a href="images/gallery/pet-11.jpg" data-full><img src="images/gallery/pet-11-sm.jpg" alt="Small white dog lying on the wood floor" width="600" height="600" loading="lazy"></a></li>
+        <li><a href="images/gallery/pet-12.jpg" data-full><img src="images/gallery/pet-12-sm.jpg" alt="Ragdoll cat relaxing on the bed" width="600" height="600" loading="lazy"></a></li>
+        <li><a href="images/gallery/pet-13.jpg" data-full><img src="images/gallery/pet-13-sm.jpg" alt="Boston terrier on a trail walk" width="600" height="600" loading="lazy"></a></li>
+        <li><a href="images/gallery/pet-14.jpg" data-full><img src="images/gallery/pet-14-sm.jpg" alt="Cat snuggled in a round pet bed" width="600" height="600" loading="lazy"></a></li>
+        <li><a href="images/gallery/pet-15.jpg" data-full><img src="images/gallery/pet-15-sm.jpg" alt="French bulldog looking at the camera" width="600" height="600" loading="lazy"></a></li>
+        <li><a href="images/gallery/pet-16.jpg" data-full><img src="images/gallery/pet-16-sm.jpg" alt="Pug wrapped up in a blanket" width="600" height="600" loading="lazy"></a></li>
+        <li><a href="images/gallery/pet-17.jpg" data-full><img src="images/gallery/pet-17-sm.jpg" alt="White cat sitting under a lamp" width="600" height="600" loading="lazy"></a></li>
+        <li><a href="images/gallery/pet-18.jpg" data-full><img src="images/gallery/pet-18-sm.jpg" alt="French bulldog playing with a ball on the grass" width="600" height="600" loading="lazy"></a></li>
+      </ul>
+    </div>
+    <dialog class="lightbox" id="lightbox" aria-label="Photo">
+      <button class="lb-close" type="button" aria-label="Close photo">×</button>
+      <img alt="">
+    </dialog>
+  </section>
+
   <!-- HOW IT WORKS -->
   <section id="how" class="band-white">
     <div class="wrap">
@@ -383,16 +412,6 @@
             <li>Two walks a day, plus potty breaks as needed</li>
             <li>Sleeps indoors with the family</li>
             <li>Daily photo update</li>
-          </ul>
-        </div>
-        <div class="price">
-          <h3>Day stay</h3>
-          <p class="amount">$30</p>
-          <p class="per">per day, 8am – 6pm</p>
-          <ul>
-            <li>Great for a first visit</li>
-            <li>Walk, play and lunch</li>
-            <li>Photo update</li>
           </ul>
         </div>
         <div class="price">
@@ -479,5 +498,16 @@
 </footer>
 
 <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+<script>
+  const lb = document.getElementById("lightbox");
+  const lbImg = lb.querySelector("img");
+  document.querySelectorAll("[data-full]").forEach((a) => a.addEventListener("click", (e) => {
+    e.preventDefault();
+    lbImg.src = a.href;
+    lbImg.alt = a.querySelector("img").alt;
+    lb.showModal();
+  }));
+  lb.addEventListener("click", () => lb.close());
+</script>
 </body>
 </html>
